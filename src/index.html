@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Black Cat Goes Meow</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      .blackcat {
+        width: 800px;
+        margin: 0 auto;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <audio class="meow" src="growl.mp3"></audio>
+    <img class="blackcat" src="blackcat_transparent.png" />
+    <script>
+      const originalCatImgSrc = "blackcat_transparent.png";
+      const catOrangeEyesSrc = "blackcat_transparent_orange_eyes.png";
+      const catGreenEyesSrc = "blackcat_transparent_green_eyes.png";
+      var catImgEl = null;
+      var meowAudioEl = null;
+
+      function init() {
+        catImgEl = document.querySelector(".blackcat");
+        catImgEl.setAttribute("draggable", false);
+        document.addEventListener("mousedown", handleMouseDown);
+        document.addEventListener("mouseup", handleMouseUp);
+        document.addEventListener("touchstart", handleMouseDown);
+        document.addEventListener("touchend", handleMouseUp);
+
+        meowAudioEl = document.querySelector(".meow");
+      }
+
+      function handleMouseDown(e) {
+        catImgEl.src = catOrangeEyesSrc;
+
+        // Play meow.
+        meowAudioEl.currentTime = 0;
+        meowAudioEl.volume = 0.5;
+        meowAudioEl.play();
+      }
+
+      function handleMouseUp(e) {
+        catImgEl.src = catGreenEyesSrc;
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>
